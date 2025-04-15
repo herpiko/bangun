@@ -1,2 +1,3 @@
-noble/base.tgz
-bookworm/base.tgz
+debian-bases/noble/base.tgz
+debian-bases/bookworm/base.tgz
+results

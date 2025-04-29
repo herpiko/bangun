@@ -62,7 +62,7 @@ func (b *debianBuildUsecase) Build(req DebianBuildRequest) (DebianBuildResult, e
 	containername := fmt.Sprintf("bangun-build-%s", jobID)
 	portopening := "8080"
 	inputEnv := []string{fmt.Sprintf("LISTENINGPORT=%s", portopening)}
-	resultPath := fmt.Sprintf("/media/homelab/src/bangun/results/%s/%s", jobID, req.Distro)
+	resultPath := fmt.Sprintf("/tmp/bangun/results/%s/%s", jobID, req.Distro)
 	err = runContainer(dockerClient, jobID, imagename, containername, portopening, inputEnv, resultPath)
 	if err != nil {
 		log.Println(err)
@@ -122,7 +122,7 @@ func runContainer(
 	}
 	scriptMount := mount.Mount{
 		Type:     mount.TypeBind,
-		Source:   "/media/homelab/src/bangun/scripts",
+		Source:   "/usr/share/bangun/scripts",
 		Target:   "/scripts",
 		ReadOnly: false,
 	}
